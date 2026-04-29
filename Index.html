@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP – SSA-East Open House | May 7th</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --blue-mid: #0A2870;
+    --gold: #FFD740;
+    --gold-dim: rgba(255,215,64,0.15);
+    --gold-border: rgba(255,215,64,0.35);
+    --white: #ffffff;
+    --white-60: rgba(255,255,255,0.6);
+    --white-40: rgba(255,255,255,0.4);
+    --white-15: rgba(255,255,255,0.15);
+    --white-08: rgba(255,255,255,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(160deg, #0A1628 0%, #0D2150 40%, #0A3060 100%);
+    min-height: 100vh; color: var(--white); overflow-x: hidden;
+  }
+  .bg-deco { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-circle {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,105,210,0.3) 0%, transparent 70%);
+  }
+  .page { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* SETUP BANNER — remove after you add your Formspree ID */
+  .setup-banner {
+    background: rgba(255,215,64,0.15); border: 2px dashed rgba(255,215,64,0.5);
+    border-radius: 16px; padding: 16px 20px; margin-bottom: 24px;
+    font-size: 13px; font-weight: 700; color: var(--gold); line-height: 1.6; text-align: center;
+  }
+  .setup-banner strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .setup-banner code { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 2px 8px; font-size: 12px; color: #fff; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+  .school-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold-dim); border: 1.5px solid var(--gold-border);
+    border-radius: 40px; padding: 8px 20px; margin-bottom: 20px;
+  }
+  .school-badge-text { font-size: 13px; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+  .aplus { font-family: 'Fredoka One', cursive; font-size: 18px; color: var(--gold); }
+  .header-eyebrow { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-40); margin-bottom: 10px; }
+  .header-title { font-family: 'Fredoka One', cursive; font-size: clamp(36px, 8vw, 52px); line-height: 1.05; color: var(--white); margin-bottom: 10px; }
+  .header-sub { font-size: 15px; font-weight: 600; color: var(--white-60); line-height: 1.5; }
+
+  /* DETAILS */
+  .details-strip { display: flex; gap: 10px; margin-bottom: 28px; animation: fadeUp 0.6s 0.1s ease both; }
+  .detail-pill {
+    flex: 1; display: flex; align-items: center; gap: 10px;
+    background: var(--white-08); border: 1px solid var(--white-15); border-radius: 14px; padding: 14px 16px;
+  }
+  .detail-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--gold-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .detail-label { font-size: 10px; font-weight: 800; color: var(--white-40); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .detail-value { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--white); line-height: 1; }
+
+  /* FORM CARD */
+  .form-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px; padding: 32px 28px; animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .form-title { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--white); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .form-group { margin-bottom: 18px; }
+  label { display: block; font-size: 12px; font-weight: 800; color: var(--white-60); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  input, select, textarea {
+    width: 100%; background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 14px 16px; font-family: 'Nunito', sans-serif;
+    font-size: 15px; font-weight: 600; color: var(--white); outline: none;
+    transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; appearance: none;
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+  input:focus, select:focus, textarea:focus { border-color: var(--gold); background: rgba(255,215,64,0.06); }
+  select option { background: #0D2150; color: white; }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: ''; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    width: 0; height: 0; border-left: 5px solid transparent;
+    border-right: 5px solid transparent; border-top: 6px solid rgba(255,255,255,0.4); pointer-events: none;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 22px 0; }
+
+  /* SESSION */
+  .session-options { display: flex; gap: 10px; }
+  .session-btn {
+    flex: 1; padding: 14px 12px; border-radius: 12px; cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07);
+    font-family: 'Fredoka One', cursive; font-size: 17px; color: rgba(255,255,255,0.5);
+    text-align: center; transition: all 0.2s; user-select: none;
+  }
+  .session-btn small {
+    display: block; font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
+    color: inherit; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;
+  }
+  .session-btn.active { border-color: var(--gold); background: rgba(255,215,64,0.12); color: var(--gold); }
+  .session-btn:hover:not(.active) { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.75); }
+
+  /* KIDS */
+  .kids-row { display: flex; align-items: center; gap: 12px; }
+  .kids-btn {
+    width: 44px; height: 44px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.07); color: var(--white); font-size: 22px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0;
+  }
+  .kids-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .kids-display {
+    flex: 1; text-align: center; font-family: 'Fredoka One', cursive; font-size: 26px; color: var(--white);
+    background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px;
+  }
+
+  /* GRADES */
+  .grade-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .grade-tag {
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07);
+    font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); transition: all 0.15s; user-select: none;
+  }
+  .grade-tag.active { border-color: var(--gold); background: rgba(255,215,64,0.12); color: var(--gold); }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%; padding: 18px; background: var(--gold); border: none; border-radius: 16px;
+    font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--blue-mid);
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 24px;
+  }
+  .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,64,0.3); }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  input.error { border-color: #E24B4A !important; animation: shake 0.35s ease; }
+
+  /* SENDING STATE */
+  .spinner {
+    width: 22px; height: 22px; border: 3px solid rgba(10,40,112,0.3);
+    border-top-color: var(--blue-mid); border-radius: 50%;
+    animation: spin 0.7s linear infinite; display: none;
+  }
+
+  /* SUCCESS */
+  .success-card {
+    display: none; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px; padding: 48px 28px; text-align: center;
+  }
+  .success-icon {
+    width: 80px; height: 80px; border-radius: 50%; background: rgba(255,215,64,0.15);
+    border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+  }
+  .success-title { font-family: 'Fredoka One', cursive; font-size: 34px; color: var(--white); margin-bottom: 12px; }
+  .success-sub { font-size: 15px; font-weight: 600; color: var(--white-60); line-height: 1.6; margin-bottom: 28px; }
+  .confirm-box {
+    background: var(--gold-dim); border: 1.5px solid var(--gold-border);
+    border-radius: 16px; padding: 20px 24px; margin-bottom: 20px; text-align: left;
+  }
+  .confirm-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid rgba(255,215,64,0.1); }
+  .confirm-row:last-child { border-bottom: none; }
+  .confirm-label { font-size: 11px; font-weight: 800; color: var(--white-40); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 2px; flex-shrink: 0; }
+  .confirm-value { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--gold); text-align: right; max-width: 60%; }
+  .add-calendar {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 12px 24px; font-size: 14px; font-weight: 700;
+    color: var(--white-60); text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .add-calendar:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+  /* ERROR CARD */
+  .error-card {
+    display: none; background: rgba(226,75,74,0.1); border: 1px solid rgba(226,75,74,0.3);
+    border-radius: 16px; padding: 20px 24px; margin-top: 16px; text-align: center;
+    font-size: 14px; font-weight: 700; color: #F09595; line-height: 1.6;
+  }
+
+  .footer {
+    text-align: center; margin-top: 32px; font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.25); line-height: 1.7;
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 400px) {
+    .form-row { grid-template-columns: 1fr; }
+    .details-strip { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-deco">
+  <div class="bg-circle" style="width:600px;height:600px;top:-200px;right:-200px;"></div>
+  <div class="bg-circle" style="width:400px;height:400px;bottom:100px;left:-150px;"></div>
+</div>
+
+<div class="page">
+
+  <!-- ★ SETUP NOTICE — delete this block after you add your Formspree ID below -->
+  <div class="setup-banner" id="setup-banner">
+    <strong>⚙️ One quick setup step</strong>
+    Sign up free at <strong>formspree.io</strong> → create a form → copy your Form ID<br>
+    Then open this file and replace <code>YOUR_FORM_ID</code> on line 1 of the script below.
+  </div>
+
+  <div class="header">
+    <div class="school-badge">
+      <span class="aplus">A+</span>
+      <span class="school-badge-text">SSA-East · School of Excellence</span>
+    </div>
+    <div class="header-eyebrow">K – 8th Grade · Tucson, Arizona</div>
+    <h1 class="header-title">Reserve Your<br>Spot Today!</h1>
+    <p class="header-sub">Join us for our Open House and discover everything SSA-East has to offer your family.</p>
+  </div>
+
+  <div class="details-strip">
+    <div class="detail-pill">
+      <div class="detail-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFD740" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="detail-label">Date</div>
+        <div class="detail-value">Wednesday, May 7th</div>
+      </div>
+    </div>
+    <div class="detail-pill">
+      <div class="detail-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFD740" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="detail-label">Location</div>
+        <div class="detail-value">7450 E Stella Rd</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card" id="rsvp-form-wrap">
+    <div class="form-title">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD740" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      RSVP for Open House
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="First Name" placeholder="Maria" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="Last Name" placeholder="Garcia" autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="Email" placeholder="maria@email.com" autocomplete="email">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="Phone" placeholder="(520) 555-0000" autocomplete="tel">
+    </div>
+
+    <div class="form-divider"></div>
+
+    <div class="form-group">
+      <label>Which session will you attend?</label>
+      <div class="session-options">
+        <div class="session-btn active" data-session="9:00 AM – Morning Session">
+          9:00 AM <small>Morning Session</small>
+        </div>
+        <div class="session-btn" data-session="3:00 PM – Afternoon Session">
+          3:00 PM <small>Afternoon Session</small>
+        </div>
+      </div>
+      <input type="hidden" id="session-hidden" name="Session">
+    </div>
+
+    <div class="form-group">
+      <label>Number of children attending</label>
+      <div class="kids-row">
+        <button class="kids-btn" id="kids-minus" type="button">−</button>
+        <div class="kids-display" id="kids-display">1</div>
+        <button class="kids-btn" id="kids-plus" type="button">+</button>
+      </div>
+      <input type="hidden" id="kids-hidden" name="Number of Children">
+    </div>
+
+    <div class="form-group">
+      <label>Grade(s) entering <span style="font-weight:400;text-transform:none;font-size:11px;opacity:0.6;">(select all that apply)</span></label>
+      <div class="grade-grid">
+        <div class="grade-tag" data-grade="Kinder">Kinder</div>
+        <div class="grade-tag" data-grade="1st">1st</div>
+        <div class="grade-tag" data-grade="2nd">2nd</div>
+        <div class="grade-tag" data-grade="3rd">3rd</div>
+        <div class="grade-tag" data-grade="4th">4th</div>
+        <div class="grade-tag" data-grade="5th">5th</div>
+        <div class="grade-tag" data-grade="6th">6th</div>
+        <div class="grade-tag" data-grade="7th">7th</div>
+        <div class="grade-tag" data-grade="8th">8th</div>
+        <div class="grade-tag" data-grade="Not sure yet">Not sure yet</div>
+      </div>
+      <input type="hidden" id="grades-hidden" name="Grades">
+    </div>
+
+    <div class="form-group">
+      <label for="referral">How did you hear about us? <span style="font-weight:400;text-transform:none;font-size:11px;opacity:0.6;">(optional)</span></label>
+      <div class="select-wrap">
+        <select id="referral" name="How They Heard">
+          <option value="">Select one…</option>
+          <option>Instagram</option>
+          <option>Facebook</option>
+          <option>Friend or family</option>
+          <option>Nextdoor</option>
+          <option>Google search</option>
+          <option>School flyer</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="questions">Any questions for us? <span style="font-weight:400;text-transform:none;font-size:11px;opacity:0.6;">(optional)</span></label>
+      <textarea id="questions" name="Questions" placeholder="Feel free to ask anything…"></textarea>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" type="button">
+      <div class="spinner" id="spinner"></div>
+      <svg id="submit-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A2870" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="submit-label">Confirm My Attendance</span>
+    </button>
+
+    <div class="error-card" id="error-card">
+      Something went wrong sending your RSVP. Please try again or email the school office directly.
+    </div>
+  </div>
+
+  <div class="success-card" id="success-card">
+    <div class="success-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD740" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="success-title">You're Confirmed!</div>
+    <p class="success-sub">We can't wait to welcome your family to SSA-East.<br>See you on May 7th!</p>
+    <div class="confirm-box" id="confirm-box"></div>
+    <a class="add-calendar" id="cal-link" href="#" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Add to Google Calendar
+    </a>
+  </div>
+
+  <div class="footer">
+    SSA-East · 7450 E Stella Rd, Tucson, AZ 85730<br>
+    A+ School of Excellence · Enrolling for 2026–27
+  </div>
+
+</div>
+
+<script>
+  // ─────────────────────────────────────────────
+  // STEP 1: Replace YOUR_FORM_ID with your actual
+  // Formspree form ID (e.g. "xbjnaklz")
+  // Get it free at https://formspree.io
+  // ─────────────────────────────────────────────
+  var FORMSPREE_ID = 'xpqkvoon';
+
+  var selectedSession = '9:00 AM – Morning Session';
+  var kidsCount = 1;
+  var selectedGrades = [];
+
+  // Init hidden fields
+  document.getElementById('session-hidden').value = selectedSession;
+  document.getElementById('kids-hidden').value = kidsCount;
+
+  // Session buttons
+  document.querySelectorAll('.session-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.session-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      selectedSession = btn.getAttribute('data-session');
+      document.getElementById('session-hidden').value = selectedSession;
+    });
+  });
+
+  // Kids counter
+  document.getElementById('kids-minus').addEventListener('click', function() {
+    if (kidsCount > 1) {
+      kidsCount--;
+      document.getElementById('kids-display').textContent = kidsCount;
+      document.getElementById('kids-hidden').value = kidsCount;
+    }
+  });
+  document.getElementById('kids-plus').addEventListener('click', function() {
+    if (kidsCount < 8) {
+      kidsCount++;
+      document.getElementById('kids-display').textContent = kidsCount;
+      document.getElementById('kids-hidden').value = kidsCount;
+    }
+  });
+
+  // Grade tags
+  document.querySelectorAll('.grade-tag').forEach(function(tag) {
+    tag.addEventListener('click', function() {
+      var grade = tag.getAttribute('data-grade');
+      if (tag.classList.contains('active')) {
+        tag.classList.remove('active');
+        selectedGrades = selectedGrades.filter(function(g) { return g !== grade; });
+      } else {
+        tag.classList.add('active');
+        selectedGrades.push(grade);
+      }
+      document.getElementById('grades-hidden').value = selectedGrades.length > 0 ? selectedGrades.join(', ') : 'Not specified';
+    });
+  });
+
+  // Submit
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    var fname  = document.getElementById('fname').value.trim();
+    var lname  = document.getElementById('lname').value.trim();
+    var email  = document.getElementById('email').value.trim();
+    var phone  = document.getElementById('phone').value.trim();
+    var referral = document.getElementById('referral').value;
+    var questions = document.getElementById('questions').value.trim();
+    var valid  = true;
+
+    ['fname','lname','email'].forEach(function(id) { document.getElementById(id).classList.remove('error'); });
+    document.getElementById('error-card').style.display = 'none';
+
+    if (!fname) { markError('fname'); valid = false; }
+    if (!lname) { markError('lname'); valid = false; }
+    if (!email || email.indexOf('@') === -1) { markError('email'); valid = false; }
+    if (!valid) return;
+
+    // Set grades default if none selected
+    if (selectedGrades.length === 0) document.getElementById('grades-hidden').value = 'Not specified';
+
+    // Build payload
+    var payload = {
+      'First Name': fname,
+      'Last Name': lname,
+      'Email': email,
+      'Phone': phone || 'Not provided',
+      'Session': selectedSession,
+      'Number of Children': kidsCount,
+      'Grades': document.getElementById('grades-hidden').value,
+      'How They Heard': referral || 'Not specified',
+      'Questions': questions || 'None',
+      '_subject': 'New Open House RSVP – ' + fname + ' ' + lname
+    };
+
+    // Show loading
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    document.getElementById('spinner').style.display = 'block';
+    document.getElementById('submit-icon').style.display = 'none';
+    document.getElementById('submit-label').textContent = 'Sending…';
+
+    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+    .then(function(result) {
+      if (result.ok) {
+        showSuccess(fname, lname);
+      } else {
+        showFormError();
+      }
+    })
+    .catch(function() {
+      // If Formspree not configured yet, still show success locally so you can test the UI
+      if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+        showSuccess(fname, lname);
+      } else {
+        showFormError();
+      }
+    });
+  });
+
+  function showSuccess(fname, lname) {
+    var gradesText = selectedGrades.length > 0 ? selectedGrades.join(', ') : 'Not specified';
+    document.getElementById('confirm-box').innerHTML =
+      row('Name',     fname + ' ' + lname) +
+      row('Session',  selectedSession) +
+      row('Children', kidsCount) +
+      row('Grade(s)', gradesText);
+
+    var is9am = selectedSession.indexOf('9') !== -1;
+    var start = is9am ? '20250507T090000' : '20250507T150000';
+    var end   = is9am ? '20250507T110000' : '20250507T170000';
+    document.getElementById('cal-link').href =
+      'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=SSA-East+Open+House' +
+      '&dates=' + start + '/' + end +
+      '&details=Open+House+at+SSA-East+%E2%80%93+A%2B+School+of+Excellence+%7C+K-8+%7C+Enrolling+for+2026-27' +
+      '&location=7450+E+Stella+Rd,+Tucson,+AZ+85730';
+
+    document.getElementById('rsvp-form-wrap').style.display = 'none';
+    var sc = document.getElementById('success-card');
+    sc.style.display = 'block';
+    sc.style.animation = 'fadeUp 0.5s ease both';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showFormError() {
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('submit-icon').style.display = 'block';
+    document.getElementById('submit-label').textContent = 'Confirm My Attendance';
+    document.getElementById('error-card').style.display = 'block';
+  }
+
+  function row(label, value) {
+    return '<div class="confirm-row"><span class="confirm-label">' + label + '</span><span class="confirm-value">' + value + '</span></div>';
+  }
+
+  function markError(id) {
+    var el = document.getElementById(id);
+    el.classList.add('error');
+    setTimeout(function() { el.classList.remove('error'); }, 1200);
+  }
+</script>
+
+</body>
+</html>
